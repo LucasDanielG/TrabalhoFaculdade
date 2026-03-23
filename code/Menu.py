@@ -2,7 +2,7 @@ import pygame.image
 from pygame import Surface, Rect
 from pygame.ftfont import Font
 
-from code.Const import MENU_OPTION, COLOR_WHITE, WIN_WIDTH
+from code.Const import MENU_OPTION, COLOR_WHITE, WIN_WIDTH, COLOR_BLUE
 
 
 class Menu:
@@ -12,21 +12,41 @@ class Menu:
         self.rect = self.surf.get_rect(left=0, top=0)
 
     def run(self, ):
+        menu_option = 0
         pygame.mixer_music.load('./Assets/jogo_musica.mp3')
         pygame.mixer_music.play(-1)
         while True:
              self.window.blit(source=self.surf, dest=self.rect)
 
              for i in range(len(MENU_OPTION)):
-                 self.menu_text(20, MENU_OPTION[i], COLOR_WHITE, ((WIN_WIDTH / 2),360 + 30 * i))
+                 if i == menu_option:
+                    self.menu_text(20, MENU_OPTION[i], COLOR_BLUE, ((WIN_WIDTH / 2), 360 + 30 * i))
+                 else:
+                    self.menu_text(20, MENU_OPTION[i], COLOR_WHITE, ((WIN_WIDTH / 2),360 + 30 * i))
 
              pygame.display.flip()
+
+
+# Funcionamento de teclas no menu
 
              for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                  print('quitting')
                  pygame.quit()  # window close
                  quit()  # pygame end
+                if event.type == pygame.KEYDOWN: #descendo o menu
+                    if event.key == pygame.K_DOWN:
+                         if menu_option < len(MENU_OPTION) - 1:
+                             menu_option += 1
+                         else:
+                             menu_option = 0
+                    if event.key == pygame.K_UP: # subindo o menu
+                        if menu_option >0:
+                            menu_option -= 1
+                        else:
+                            menu_option = len(MENU_OPTION) - 1
+                    if event.key == pygame.K_RETURN:
+                        return MENU_OPTION[menu_option]
 
 
 
