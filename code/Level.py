@@ -12,7 +12,8 @@ class Level:
         self.menu_return = menu_return
 
         # 1. Assets de Fundo
-        self.bg_image = pygame.image.load('./Assets/campo_completo.png').convert()
+        from code.Const import resource_path
+        self.bg_image = pygame.image.load(resource_path('./Assets/campo_completo.png')).convert()
         self.bg_image = pygame.transform.scale(self.bg_image, (WIN_WIDTH, WIN_HEIGHT))
 
         # 2. Área do Gol
@@ -22,16 +23,18 @@ class Level:
         self.bola_pos = [WIN_WIDTH // 2, WIN_HEIGHT - 100]
         self.bola_vel = [0, 0]
         self.chutada = False
-        self.sprite_bola = pygame.image.load('./Assets/bola.png').convert_alpha()
+        from code.Const import resource_path
+        self.sprite_bola = pygame.image.load(resource_path('./Assets/bola.png')).convert_alpha()
         self.sprite_bola = pygame.transform.scale(self.sprite_bola, (24, 24))
         self.bola_rect = self.sprite_bola.get_rect()
 
         # 4. Assets do Goleiro
         tamanho_goleiro = (80, 100)
-        self.sprite_goleiro_parado = pygame.image.load('./Assets/goleiro_pronto.png').convert_alpha()
+        from code.Const import resource_path
+        self.sprite_goleiro_parado = pygame.image.load(resource_path('./Assets/goleiro_pronto.png')).convert_alpha()
         self.sprite_goleiro_parado = pygame.transform.scale(self.sprite_goleiro_parado, tamanho_goleiro)
-
-        self.sprite_pulando_esq = pygame.image.load('./Assets/goleiro_pulo_esq.png').convert_alpha()
+        from code.Const import resource_path
+        self.sprite_pulando_esq = pygame.image.load(resource_path('./Assets/goleiro_pulo_esq.png')).convert_alpha()
         self.sprite_pulando_esq = pygame.transform.scale(self.sprite_pulando_esq, (120, 100))
         self.sprite_pulando_dir = pygame.transform.flip(self.sprite_pulando_esq, True, False)
 
@@ -49,16 +52,20 @@ class Level:
         self.fonte_placar = pygame.font.SysFont("Lucida Sans Typewriter", 30, bold=True)
         self.fonte_instrucoes = pygame.font.SysFont("Lucida Sans Typewriter", 20)
         self.mira_pos = [WIN_WIDTH // 2, 200]
-
-        self.img_gol = pygame.image.load('./Assets/gol.jpg').convert_alpha()
+        from code.Const import resource_path
+        self.img_gol = pygame.image.load(resource_path('./Assets/gol.jpg')).convert_alpha()
         self.img_gol = pygame.transform.scale(self.img_gol, (500, 200))
-        self.img_derrota = pygame.image.load('./Assets/perdeu_mane.png').convert_alpha()
+        from code.Const import resource_path
+        self.img_derrota = pygame.image.load(resource_path('./Assets/perdeu_mane.png')).convert_alpha()
         self.img_derrota = pygame.transform.scale(self.img_derrota, (500, 200))
         self.feedback_rect = self.img_gol.get_rect(center=(WIN_WIDTH // 2, WIN_HEIGHT // 2))
 
         # 6. Sons
-        self.som_gol = pygame.mixer.Sound('./Assets/gol_torcida.mp3')
-        self.som_derrota = pygame.mixer.Sound('./Assets/vaias.mp3')
+
+        from code.Const import resource_path
+        self.som_gol = pygame.mixer.Sound(resource_path('./Assets/gol_torcida.mp3'))
+        from code.Const import resource_path
+        self.som_derrota = pygame.mixer.Sound(resource_path('./Assets/vaias.mp3'))
 
     def run(self):
         pygame.mixer.music.set_volume(0.2)

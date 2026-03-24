@@ -7,7 +7,8 @@ class Credits:
     def __init__(self, window):
         self.window = window
         # Carregamos a nova imagem (salve o novo arquivo como 'feedback_creditos.png')
-        self.bg_image = pygame.image.load('./Assets/creditos.png').convert()
+        from code.Const import resource_path
+        self.bg_image = pygame.image.load(resource_path('./Assets/creditos.png')).convert()
         self.bg_image = pygame.transform.scale(self.bg_image, (WIN_WIDTH, WIN_HEIGHT))
 
     def run(self):

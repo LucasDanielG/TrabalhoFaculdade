@@ -9,12 +9,14 @@ from code.Const import MENU_OPTION, COLOR_WHITE, WIN_WIDTH, COLOR_BLUE
 class Menu:
     def __init__(self, window):
         self.window = window
-        self.surf = pygame.image.load('./Assets/imagem_menux.png')
+        from code.Const import resource_path  # Importe a função que você criou no main
+        self.surf = pygame.image.load(resource_path('Assets/imagem_menux.png'))
         self.rect = self.surf.get_rect(left=0, top=0)
 
     def run(self):
         menu_option = 0
-        pygame.mixer_music.load('./Assets/jogo_musica.mp3')
+        from code.Const import resource_path
+        pygame.mixer_music.load(resource_path('./Assets/jogo_musica.mp3'))
         pygame.mixer_music.play(-1)
 
         while True:

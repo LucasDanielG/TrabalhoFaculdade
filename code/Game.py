@@ -1,3 +1,4 @@
+import sys
 
 import pygame
 
@@ -20,7 +21,7 @@ class Game:
                 level_return = level.run()
             elif menu_return == MENU_OPTION[2]:
                 pygame.quit()
-                quit()
+                sys.exit()
             else:
                 pass
 
